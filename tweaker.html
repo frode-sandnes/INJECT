@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+
+<! -- By Frode Eika Sandnes, Oslo Metropolitan University, Oslo, Norway, January 2021 -->
+
+<head>
+    <meta charset="utf-8">
+    <title>Inverse Colour Contrast Checker: Tweaker</title>
+    <link href="colourcorrector.css" rel="stylesheet">	
+</head>
+
+<script src="colourcorrector.js" type="text/javascript"></script>
+
+
+
+<html>
+	<body onload="update()">
+		<form id="inpt">
+			<h1>Inverse Colour Contrast Checker: <a href="injector.html">Injector</a>/Tweaker</h1>
+			
+			<p>by Frode Eika Sandnes, Oslo Metropolitan University, June 2021.</p>			
+			
+			<p>Input your text colour and background colour using names, RGB values or HSV (html-syntax). Visually inspect the suggested contrast adjustments that will satisfy WCAG2.1 at AA and AAA levels while maintaining the visual design profile. </p>
+			<ul class="noBullets">
+				<li>
+				    <label for="fgid"><span>Foreground colour</span></label>
+					<input type="text" id="fgid" name="fg" size="10" onfocusout="update()" /> 
+				</li>
+				<li>
+				    <label for="bgid"><span>Background colour</span></label>
+					<input type="text" name="bg" id="bgid" size="10" onfocusout="update()"/>
+				</li>
+
+				<br/>
+						
+				<h2>Colours as specified</h2>		
+				<div id="original">
+				<h2 id="originalh2">Duis aute irure</h2>
+				<p id="originalp">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+				</p>
+				</div>
+
+				<div id="info"></div>
+				
+				<h2>Colours WCAG AA corrected</h2>			
+				<div id="aa">
+				<h2 id="aah2">Duis aute irure</h2>
+				<p id="aap">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+				</p>
+				</div>
+				
+				<p>Heading colours</p>
+				<div id="aa-h2"></div>
+				<p>Body test colours</p>
+				<div id="aa-p"></div>
+
+				
+				<h2>Colours WCAG AAA corrected</h2>
+				<div id="aaa">
+				<h2 id="aaah2">Duis aute irure</h2>
+				<p id="aaap">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+				</p>
+				</div>
+				
+				<p>Heading colours</p>
+				<div id="aaa-h2"></div>
+				<p>Body test colours</p>
+				<div id="aaa-p"></div>
+				
+			</ul>
+		</form>
+	</body>
+</html>

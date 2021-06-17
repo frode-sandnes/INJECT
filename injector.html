@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+
+<! -- By Frode Eika Sandnes, Oslo Metropolitan University, Oslo, Norway, January 2021 -->
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Inverse Colour Contrast Checker: Injector</title>
+    <link href="colourcorrector.css" rel="stylesheet">
+</head>
+
+<script src="colourcorrector.js" type="text/javascript"></script>
+
+
+
+	<body onload="return setup()">
+	<form>
+		<h1>Inverse Colour Contrast Checker: Injector/<a href="tweaker.html">Tweaker</a></h1>
+ <! -- 		
+		by Frode Eika Sandnes
+ -->
+		<p>by Frode Eika Sandnes, Oslo Metropolitan University, June 2021.</p>
+			
+		<p>This is an example page demonstrating the Colour Contrast Corrector tool. To use on your own web page include the javascript library and connect it with onload() in the body tag. See the source of this page as an example. Download a local copy. Include the javascript library:</p>
+		<code class="tab">
+		&lt;script src="colourcorrector.js" type="text/javascript"&gt;&lt;/script&gt;		
+		</code>
+		<p>Ensure that setup() is called when the page is loaded (or whenever the injections should take place). Fore xample:</p>
+		<code class="tab">
+			&lt;body onload="return setup()"&gt;
+		</code>
+		
+		<p>Alternatively, place a button which calls setup somewhere on the page:</p>
+		<code class="tab">
+			&lt;button onClick="setup()"&gt;Start&lt;/button&gt;
+		</code>
+		<p>You may view the source of this html-document for a complete example.</p>
+		
+<h2>Keystroke kontrols</h2>	
+<p>You can visually inspect the effects of adjusting the contrasts using the following keystrokes.</p>	
+		<ul>
+		<li>Contrl-Z: Cycle between the original colours, AAA-level corrections, and AA-corrections.</li>
+		<li>Contrl-UP: darker foreground text.</li>
+		<li>Contrl-DOWN: lighter foreground text.</li>
+		<li>Contrl-LEFT: reduce saturation foreground text.</li>
+		<li>Contrl-RIGHT: increase saturation foreground text.</li>
+		</ul>
+
+<h2>Examples</h2>		
+		
+		<p>Test the injection on the samples below using the keystrokes.</p>
+		
+		<div style="color:yellow;background-color:mistyrose;width:60%; float: left;">
+		<h2>Duis aute irure</h2>
+		<p style="color:yellow">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+		</p>
+		</div>
+		
+		<div style="color:lightgray;background-color:mistyrose;width:60%;float: right;">
+		<h2>Duis aute irure</h2>
+		<p style="color:lightgray">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+		</p>
+		</div>
+	
+		<div style="color:red;background-color:green;width:60%; float: left;">
+		<h2>Duis aute irure</h2>
+		<p style="color:red">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+		</p>
+		</div>
+		
+		<div style="color:red;background-color:blue;width:60%;float: right;">
+		<h2>Duis aute irure</h2>
+		<p style="color:red">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+		</p>
+		</div>
+
+		<div style="color:green;background-color:lightgreen;width:60%;float: left;">
+		<h2>Duis aute irure</h2>
+		<p style="color:green">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+		</p>
+		</div>
+	
+		<div style="color:blue;background-color:lightblue;width:60%;float: right;">
+		<h2>Duis aute irure</h2>
+		<p style="color:blue">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+		</p>
+		</div>
+		
+		<div style="color:lightblue;background-color:lightblue;width:60%;float: left;">
+		<h2>Duis aute irure</h2>
+		<p style="color:lightblue">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+		</p>
+		</div>
+	
+	
+		<div style="color:red;background-color:red;width:60%;float: right;">
+		<h2>Duis aute irure</h2>
+		<p style="color:red">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+		</p>
+		</div>
+	
+		<div style="color:orange;background-color:orange;width:60%;float: left;">
+		<h2>Duis aute irure</h2>
+		<p style="color:orange">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+		</p>
+		</div>	
+	
+		<div style="color:yellow;background-color:yellow;width:60%;float: right;">
+		<h2>Duis aute irure</h2>
+		<p style="color:yellow">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+		</p>
+		</div>
+	
+		<div style="color:greenyellow;background-color:greenyellow;width:60%;float: left;">
+		<h2>Duis aute irure</h2>
+		<p style="color:greenyellow">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+		</p>
+		</div>	
+	
+		<div style="color:green;background-color:green;width:60%;float: right;">
+		<h2>Duis aute irure</h2>
+		<p style="color:green">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+		</p>
+		</div>
+
+		<div style="color:turquoise;background-color:turquoise;width:60%;float: left;">
+		<h2>Duis aute irure</h2>
+		<p style="color:turquoise">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+		</p>
+		</div>		
+		
+		<div style="color:cyan;background-color:cyan;width:60%;float: right;">
+		<h2>Duis aute irure</h2>
+		<p style="color:cyan">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+		</p>
+		</div>
+		<div style="color:blue;background-color:blue;width:60%;float: left;">
+		<h2>Duis aute irure</h2>
+		<p style="color:blue">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+		</p>
+		</div>
+				
+		<div style="color:magenta;background-color:magenta;width:60%;float: right;">
+		<h2>Duis aute irure</h2>
+		<p style="color:magenta">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+		</p>
+		</div>
+	</form>
+	</body>
+</html>
