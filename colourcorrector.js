@@ -12,6 +12,10 @@ var defaultbg = [];	// store the defaultvalues as read
 // list of most html tags - some are not realistic and could be removed
 var tagNames = ["html","body","div","nav","ul","ol","li","a","p","h1","h2","h3","span","textarea","input","label","button","b","option","select","abbr","acronym","address","applet","area","article","aside","audio","base","basefont","bdi","bdo","blockquote","br","canvas","caption","center","cite","code","col","colgroup","data","datalist","dd","del","details","dfn","dialog","dl","dt","em","embed","fieldset","figcaption","figure","font","footer","form","h4","h5","h6","header","hr","i","iframe","img","input","ins","kbd","label","legend","link","main","map","mark","meter","noscript","object","optgroup","output","param","picture","pre","progress","q","rp","rt","ruby","s","samp","section","select","small","source","strong","sub","summary","sup","svg","table","tbody","td","template","tfoot","th","time","tr","track","tt","u","var","video","wbr"];
 
+// list of coordinates of where to insert marker to indicate contrast problems
+var markers = [];
+var markerMode = "on";
+
 // for use with the interactive tool
 function update()
 	{
@@ -114,8 +118,33 @@ function updateCorrectElement(e, level, tag)
 // link to this routine in the html code either from the body onload or a button onclick - sets up keystroke callbacks.		
 function setup()
 	{
+	// add a marker element for attaching the markers
+	var colourMarkers = document.createElement("div");
+	colourMarkers.setAttribute("id", "colour_markers");
+	document.body.appendChild(colourMarkers);
+/*
+// experiment with labels that are actually visible
+var ee =document.getElementById("colour_markers");
+//ee.innerHTML = "<div id=\"marker\">frode</div>";
+//ee.innerHTML = "<span style=\"background: yellow; color: red;font-weight: bold;font-size: 200%;\">CORRECTION!</span>";
+ee.innerHTML = "<span style=\"background: yellow; color: red;font-weight: bold;font-size: 200%; position: absolute; top: 10px;left: 10px; \">[+/-]</span>";
+*/
 	window.addEventListener('keydown', function (e) 
 				{
+				// toggle marking
+				if (e.ctrlKey && e.keyCode == 77) 
+					{
+					if (markerMode.match("on"))
+						{
+						markerMode = "off";
+						}
+					else	
+						{
+						markerMode = "on";	
+						}
+					colourAdjust();	// make the state change visible						
+					}
+
 				if (e.ctrlKey && e.keyCode == 90) 
 					{
 					// Ctrl + z pressed
@@ -197,7 +226,12 @@ function setColour(e,fg2)
 // run with keystroke
 function colourAdjust()
 	{		
+	markers = [];	// reset the list of markers to be indicated as it will vary from case to case
+	var e = document.getElementById("colour_markers");
+	e.innerHTML = "";	// remove the markers  
+
 	var i = 0;
+	var c = 1;
 	for (var tag of tagNames)
 		{		
 		for (var e of document.querySelectorAll(tag)) 
@@ -213,13 +247,18 @@ function colourAdjust()
 				{				
 				if (ratio > limit)
 					{
+					// store the coordinate of the element that needs to baltered in order to mark it
+					var rect = e.getBoundingClientRect();
+					markers.push(rect);						
+
 					fg2 = searchForContrast(fg2,bg2,limit);
 					// info to developer
-					console.log("WCAG level "+wcag+":Corrected foreground color of "+tag+" with html ");
+					console.log("===============================================================");
+					console.log("Issue "+(c++)+": WCAG level "+wcag+":Corrected foreground color of "+tag+" with html ");
 					console.log(e);
 					if (e.innerText.length > 0)
 						{
-						console.log(e.innerText);
+						console.log("\tContent: \""+e.innerText+"\"");
 						}
 					console.log("\tfrom "+fg);
 					console.log("\tto "+colorString(fg2));
@@ -242,6 +281,26 @@ function colourAdjust()
 			e.style.backgroundColor = bg2;	
 			}
 		}
+
+	// add the end - add visual triangular red markers 
+	if (markerMode.match("on"))
+		{
+		var txt = "";
+		c = 1; // counter
+		var bodyRect = document.body.getBoundingClientRect(); // need reference to body as origin
+		for (var rect of markers)
+			{
+			var x = rect.x; // retrieve the coordinates of the tag
+			var y = rect.y;
+			// add the elements
+//			txt += "<div id=\"marker\" style=\"position: absolute; top: "+(y-bodyRect.y)+"px;left: "+(x-bodyRect.x)+"px;\"></div>";
+//			txt += "<div class=\"marker2\" style=\"position: absolute; top: "+(y-bodyRect.y)+"px;left: "+(x-bodyRect.x)+"px;\"></div>";
+//			txt += "<span style=\"background: yellow; color: red; font-weight: bold;font-size: 200%;position: absolute; top: "+Math.floor(y-bodyRect.y)+"px;left: "+Math.floor(x-bodyRect.x)+"px; z-index: 2147483647;\">[+/-]</span>";
+			txt += "<span style=\"background: yellow; color: red; font-weight: bold;font-size: 200%;position: absolute; top: "+Math.floor(y-bodyRect.y)+"px;left: "+Math.floor(x-bodyRect.x)+"px; z-index: 2147483647;\">["+(c++)+":"+wcag.toUpperCase()+"]</span>";
+			}
+		var e = document.getElementById("colour_markers");
+		e.innerHTML = txt; 
+		}  		
 	}
 	
 // get hex string for comparison to aim	

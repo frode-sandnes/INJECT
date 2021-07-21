@@ -1,5 +1,39 @@
 /* // By Frode Eika Sandnes, Oslo Metropolitan University, Oslo, Norway, January 2021 */	
 
+/* The CSS marker that is used to indicate where the contrast problem is */
+#marker 
+    {
+    width: 0;
+    height: 0;
+    border-top: 40px solid transparent;
+    border-left: 80px solid red;
+    border-bottom: 40px solid transparent;
+    }
+    
+/* A marker in yellow tith red border*/
+  .marker2 {
+    width: 80px;
+    height: 80px;
+    background-color: red;
+    -webkit-clip-path: polygon(0 0, 100% 50%, 0 100%);
+    clip-path: polygon(0 0, 100% 50%, 0 100%);
+    position: relative;
+    }
+  
+  .marker2:before 
+    {
+    content: '';
+    width: 60px;
+    height: 60px;
+    -webkit-clip-path: polygon(0 0, 100% 50%, 0 100%);
+    clip-path: polygon(0 0, 100% 50%, 0 100%);
+    background: yellow;
+    display: block;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    }
+
 p 
 	{
 	color: black;
