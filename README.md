@@ -8,6 +8,7 @@ Then you can cycle through the original page, page with WCAG2.1 aaa corrections 
 
 The repository contains the following
 1. colourcontrast.js - the framweork itself.
-2. colourcontrast.css - a simple style file used for the sample
-3. injector.html - an example showing how to use the framework with keystroke shortcuts.
-4. tweaker.html - an example where you input two colours using either names, rgb or hsb notation and get change recommendations.
+2. colourapp.js - extra code for the colour tweaker application.
+3. colourcontrast.css - a simple style file used for the sample
+4. injector.html - an example showing how to use the framework with keystroke shortcuts.
+5. tweaker.html - an example where you input two colours using either names, rgb or hsb notation and get change recommendations.
