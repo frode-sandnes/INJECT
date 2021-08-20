@@ -9,41 +9,41 @@
     <link href="colourcorrector.css" rel="stylesheet">
 </head>
 
-<script src="colourcorrector.js" type="text/javascript"></script>
+
+
+<script src="colourcorrector.js" deferW></script>
 
 
 
-	<body onload="setup()">
+<body>
 	<form>
 		<h1>Inverse Colour Contrast Checker: Injector/<a href="tweaker.html">Tweaker</a></h1>
 
 		<p>by Frode Eika Sandnes, Oslo Metropolitan University, June 2021.</p>
 	
-		<p>This is an example page demonstrating the Colour Contrast Corrector tool. To use on your own web page include the javascript library and connect it with onload() in the body tag. See the source of this page as an example. Download a local copy. Include the javascript library:</p>
+		<p>This is an example page demonstrating the Colour Contrast Corrector tool. To use on your own web page include the javascript library. See the source of this page as an example. Download a local copy. Include the javascript library:</p>
 		<code class="tab">
-		&lt;script src="colourcorrector.js" type="text/javascript"&gt;&lt;/script&gt;		
+		&lt;script src="colourcorrector.js" defer&gt;		
 		</code>
-		<p>Ensure that setup() is called when the page is loaded (or whenever the injections should take place). Fore xample:</p>
-		<code class="tab">
-			&lt;body onload="return setup()"&gt;
-		</code>
-		
-		<p>Alternatively, place a button which calls setup somewhere on the page:</p>
-		<code class="tab">
-			&lt;button onClick="setup()"&gt;Start&lt;/button&gt;
-		</code>
-		<p>You may view the source of this html-document for a complete example.</p>
-		
+
+		<p>Details are documented in: Frode Eika Sandnes. Inverse Color Contrast Checker: Automatically Suggesting
+			Color Adjustments that meet Contrast Requirements on the Web Submission. In: ASSETS '21: The 23rd International ACM SIGACCESS Conference on Computers and Accessibility Proceedings. ACM (2021).
+			 <a href="https://doi.org/10.1145/3441852.3476529" title="Link to the ACM page with the paper.">https://doi.org/10.1145/3441852.3476529</a></p>		
+	
 <h2>Keystroke controls</h2>	
 <p>You can visually inspect the effects of adjusting the contrasts using the following keystrokes.</p>	
 		<ul>
-		<li><b>Contrl-Z</b>: Cycle between the original colours, AAA-level corrections, and AA-corrections.</li>
-		<li><b>Contrl-M</b>: Toggle correction markers on/off.</li>
-		<li><b>Contrl-UP</b>: darker foreground text.</li>
-		<li><b>Contrl-DOWN</b>: lighter foreground text.</li>
-		<li><b>Contrl-LEFT</b>: reduce saturation foreground text.</li>
-		<li><b>Contrl-RIGHT</b>: increase saturation foreground text.</li>
+		<li><b>Z</b>: Cycle between the original colours, AAA-level corrections, and AA-corrections.</li>
+		<li><b>M</b>: Toggle correction markers on/off.</li>
+		<li><b>Q/A</b>: text hue clockwise/anticlockwise adjustment.</li>
+		<li><b>W/S</b>: text saturation up/down.</li>
+		<li><b>E/D</b>: text lightness up/down.</li>
+		<li><b>R/F</b>: background hue clockwise/anticlockwise adjustment.</li>
+		<li><b>T/G</b>: background saturation up/down.</li>
+		<li><b>Y/H</b>: background lightness up/down.</li>
 		</ul>
+
+		<p>Hover over the correction markers for adjustment details. Adjustments are also logged on the console.</p>
 
 		<p>Details are documented in: Frode Eika Sandnes. Inverse Color Contrast Checker: Automatically Suggesting
 			Color Adjustments that meet Contrast Requirements on the Web Submission. In: ASSETS '21: The 23rd International ACM SIGACCESS Conference on Computers and Accessibility Proceedings. ACM (2021).
