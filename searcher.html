@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+
+<!-- By Frode Eika Sandnes, Oslo Metropolitan University, Oslo, Norway, August 2021 -->
+
+<head>
+	<meta charset="utf-8">
+	<title>Inverse Colour Contrast Checker: Searcher</title>
+	<link href="colourcorrector.css" rel="stylesheet">
+
+	<style>
+
+
+    
+		body	
+			{
+			color: white;
+			background: black;	
+			}
+		a, a:visited
+			{
+			color: gray;	
+			}
+
+		.slidecontainer {
+			width: 100%;
+			/* Width of the outside container */
+			display: flex;
+		}
+
+		/* The slider itself */
+		.slider {
+			-webkit-appearance: none;
+			/* Override default CSS styles */
+			appearance: none;
+			height: 150px;
+			/* Specified height */
+			width: 35px;
+			/* Specified height */
+			background: #d3d3d3;
+			/* Grey background */
+			outline: none;
+			/* Remove outline */
+			opacity: 0.7;
+			/* Set transparency (for mouse-over effects on hover) */
+			-webkit-transition: .2s;
+			/* 0.2 seconds transition on hover */
+			transition: opacity .2s;
+			-webkit-appearance: slider-vertical;
+		}
+
+
+		.grid {
+			display: inline-grid;
+			width: 100%;	
+			gap: 0.2em;	
+			text-align: center;
+			grid-template-areas:
+				"ha ha ha hb hb hb  .  . hc"
+				"h1 h2 h3 h4 h5 h6 h7 h8 ."
+				"s1 s2 s3 s4 s5 s6 s7 s8 r1"
+				"s1 s2 s3 s4 s5 s6 s7 s8 r2"
+				"s1 s2 s3 s4 s5 s6 s7 s8 r3"
+				"s1 s2 s3 s4 s5 s6 s7 s8 ."
+				"s1 s2 s3 s4 s5 s6 s7 s8 c"
+				"v1 v2 v3 v4 v5 v6 v7 v8 ."
+				"va va va vb vb vb  .  . .";
+		}
+		.headera {
+			grid-area: ha;
+			
+		}
+
+		.headerb {
+			grid-area: hb;
+		}
+		.headerc {
+			grid-area: hc;
+		}
+
+		.header1 {
+			grid-area: h1;
+		}
+
+		.header2 {
+			grid-area: h2;
+		}
+
+		.header3 {
+			grid-area: h3;
+		}
+
+		.header4 {
+			grid-area: h4;
+		}
+
+		.header5 {
+			grid-area: h5;
+		}
+
+		.header6 {
+			grid-area: h6;
+		}
+
+		.header7 {
+			grid-area: h7;
+		}
+
+		.header8 {
+			grid-area: h8;
+		}
+
+		.slider1 {
+			grid-area: s1;
+		}
+
+		.slider2 {
+			grid-area: s2;
+		}
+
+		.slider3 {
+			grid-area: s3;
+		}
+
+		.slider4 {
+			grid-area: s4;
+		}
+
+		.slider5 {
+			grid-area: s5;
+		}
+
+		.slider6 {
+			grid-area: s6;
+		}
+
+		.slider7 {
+			grid-area: s7;
+		}
+
+		.slider8 {
+			grid-area: s8;
+		}
+
+		.valuea {
+			grid-area: va;
+		}
+	
+		.valueb {
+			grid-area: vb;
+		}
+
+		.value1 {
+			grid-area: v1;
+		}
+
+		.value2 {
+			grid-area: v2;
+		}
+
+		.value3 {
+			grid-area: v3;
+		}
+
+		.value4 {
+			grid-area: v4;
+		}
+
+		.value5 {
+			grid-area: v5;
+		}
+
+		.value6 {
+			grid-area: v6;
+		}
+
+		.value7 {
+			grid-area: v7;
+		}
+
+		.value8 {
+			grid-area: v8;
+		}
+
+		.value8 {
+			grid-area: v8;
+		}
+
+		.checkbox {
+			grid-area: c;
+			justify-self: start;
+		}
+
+		.radio1 {
+			grid-area: r1;
+			justify-self: start;
+		}
+
+		.radio2 {
+			grid-area: r2;
+			justify-self: start;
+		}
+
+		.radio3 {
+			grid-area: r3;
+			justify-self: start;
+		}
+	</style>
+</head>
+
+<script src="colourcorrector.js" defer></script>
+<script src="searcherapp.js" defer></script>
+
+
+
+
+<html>
+
+<body id="colour-corrector-app">
+	<form id="inpt">
+		<div class="container">
+			<h1>Inverse Colour Contrast Checker: <a href="injector.html">Injector</a>/<a
+					href="tweaker.html">Tweaker</a>/Inspector</h1>
+					<p>Adjustments are locked to the contrast setting.</p>
+		</div>
+		<div class="container">
+
+
+			<div class="grid">
+
+				<div class="headera">
+					Text colour
+				</div>
+				<div class="headerb">
+					Background colour
+				</div>
+				<div class="headerc" id="harmony">
+				</div>
+
+				<div class="header1">
+					Hue
+				</div>
+				<div class="header2">
+					Sat.
+				</div>
+				<div class="header3">
+					Lit.
+				</div>
+				<div class="header4">
+					Hue
+				</div>
+				<div class="header5">
+					Sat.
+				</div>
+				<div class="header6">
+					Lit.
+				</div>
+				<div class="header7">
+					Contrast
+				</div>
+				<div class="header8">
+					Text size
+
+				</div>
+				<div class="slider1">
+					<input type="range" min="1" max="100" value="50" class="slider" id="inputFH">
+				</div>
+				<div class="slider2">
+
+					<input type="range" min="1" max="100" value="50" class="slider" id="inputFS">
+				</div>
+				<div class="slider3">
+
+					<input type="range" min="1" max="100" value="50" class="slider" id="inputFL">
+				</div>
+				<div class="slider4">
+
+					<input type="range" min="0" max="100" value="50" class="slider" id="inputBH">
+				</div>
+				<div class="slider5">
+
+					<input type="range" min="0" max="100" value="50" class="slider" id="inputBS">
+				</div>
+				<div class="slider6">
+
+					<input type="range" min="0" max="100" value="50" class="slider" id="inputBL">
+				</div>
+				<div class="slider7">
+
+					<input type="range" min="1" max="21" value="3" class="slider" id="inputContrast">
+				</div>
+				<div class="slider8">
+
+					<input type="range" min="8" max="50" value="18" class="slider" id="textSize">
+				</div>
+				<div class="checkbox">
+
+					<input type="checkbox" id="isBold" name="isBold" value="isBold">
+					<label for="isBold"> Bold typeface</label><br>
+
+				</div>
+				<div class="radio1">
+
+					<input type="radio" id="aaa" name="conformance" value="aaa">
+					<label for="aaa">AAA conformance</label><br>
+				</div>
+				<div class="radio2">
+
+
+					<input type="radio" id="aa" name="conformance" value="aa">
+					<label for="aa">AA conformance</label><br>
+				</div>
+				<div class="radio3">
+
+					<input type="radio" id="none" name="conformance" value="none">
+					<label for="none">No conformance</label>
+
+				</div>
+
+
+				<div class="value1" id="FHvalue">
+				</div>
+
+				<div class="value2" id="FSvalue">
+				</div>
+				<div class="value3" id="FLvalue">
+				</div>
+
+				<div class="value4" id="BHvalue">
+				</div>
+
+				<div class="value5" id="BSvalue">
+				</div>
+				<div class="value6" id="BLvalue">
+				</div>
+
+				<div class="value7" id="ContrastValue">
+				</div>
+
+				<div class="value8" id="TextSizeValue">
+				</div>
+
+				<div class="valuea" id="FGvalue">
+				</div>
+
+				<div class="valueb" id="BGvalue">
+				</div>
+
+			</div>
+
+		</div>
+		<div id="text" style="color: lime; background: gray;">
+			<p>Lorem ipsum dolor sit amet, no eum justo complectitur, ad eos tantas accumsan. Agam aperiam
+				aliquam ad per. Invenire tincidunt pri id. Aeque oporteat lobortis has eu. Commodo tritani
+				meliore no quo. No modo qualisque assueverit mel, qui ad scripta eleifend necessitatibus.</p>
+			</p>
+		</div>
+
+		<div class="container">
+			<p>Details are documented in: Frode Eika Sandnes. Inverse Color Contrast Checker: Automatically Suggesting
+				Color Adjustments that meet Contrast Requirements on the Web Submission. In: ASSETS '21: The 23rd
+				International ACM SIGACCESS Conference on Computers and Accessibility Proceedings. ACM (2021).
+				<a href="https://doi.org/10.1145/3441852.3476529"
+					title="Link to the ACM page with the paper.">https://doi.org/10.1145/3441852.3476529</a></p>
+			<p>by Frode Eika Sandnes, Oslo Metropolitan University, June 2021.</p>
+
+		</div>
+	</form>
+</body>
+
+</html>
