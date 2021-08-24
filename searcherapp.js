@@ -244,13 +244,27 @@ function update(search)
 	// update sliders
 	var fgHSL = rgbToHsl(fg.r, fg.g, fg.b);
 	var bgHSL = rgbToHsl(bg.r, bg.g, bg.b);
-//	inputFH.value = fgHSL.h*100;		// not setting this to avoid instability and oscilations
-	inputFS.value = fgHSL.s*100;
-	inputFL.value = fgHSL.l*100;
 
-//	inputBH.value = bgHSL.h*100;		// not setting this to avoid instability and oscilations
-	inputBS.value = bgHSL.s*100;
-	inputBL.value = bgHSL.l*100;
+	// Possible improvement - replace to if statements with if-else - and more FL and BL outside of if statement as they are executed in both blocks.
+//	inputFH.value = fgHSL.h*100;		// not setting this to avoid instability and oscilations
+	if (search == backgroundSearch)			// checking which function is passed to this function
+		{	
+		//inputFS.value = fgHSL.s*100;		// not setting foreground saturation to avoid oscilation (when adjusting backround) 
+		inputFL.value = fgHSL.l*100;		// but set lightness as it is the most important.
+
+		inputBS.value = bgHSL.s*100;		// need to set the new saturation of the background
+		inputBL.value = bgHSL.l*100;		// need to also set the new lightness of the background
+		}
+
+//	inputBH.value = bgHSL.h*100;		// not setting this to avoid instability and oscilations	
+	if (search == textSearch)			// checking which function is passed to this function
+		{
+		//inputBS.value = bgHSL.s*100;		// not setting background saturation to avoid oscilation (when adjusting text) 
+		inputBL.value = bgHSL.l*100;		// but set lightness as it is the most important.
+
+		inputFS.value = fgHSL.s*100;		// need to set the new saturation of the text
+		inputFL.value = fgHSL.l*100;		// need to also set the new lightness of the text
+		}
 
 	// Do the change
 	fg = colorString(fg);
