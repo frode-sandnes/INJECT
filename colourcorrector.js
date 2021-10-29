@@ -13,7 +13,6 @@ var hueBackground = 0;		// default background hue
 var relevantElements = new Map();	// all relevant elements
 var aaCorrectedElements = new Map();	// all AA corrected elements
 var aaaCorrectedElements = new Map();	// all AAA corrected elements
-var noCorrectedElements = new Map();	// empty set
 
 var aaAnnotations = "";
 var aaaAnnotations = "";
@@ -53,7 +52,7 @@ function toggleMarkerMode()
 var updateState = noneState;	
 function aaState()
 	{
-	colourAdjust(noCorrectedElements,noAnnotations);	
+	colourAdjust(relevantElements,noAnnotations);	
 	updateState = noneState;		// point to next state
 	}
 function aaaState()
