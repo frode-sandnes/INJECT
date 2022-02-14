@@ -1,54 +1,27 @@
 <!DOCTYPE html>
-
-<!-- By Frode Eika Sandnes, Oslo Metropolitan University, Oslo, Norway, January 2021 -->
-
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <title>Inverse Colour Contrast Checker: Injector</title>
-    <link href="colourcorrector.css" rel="stylesheet">
-	
-	<script src="colourcorrector.js" deferW></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colour usage audit</title>
+    <script src = "colourcorrector.js" defer></script>    
+    <script src = "colournamelookup.js" defer> </script>     
+    <script src = "colouraudit.js" defer></script>
 </head>
 
-<body>
-	<form>
-		<h2>Inverse Colour Contrast Checker: Injector/<a href="tweaker.html">Tweaker</a>/<a href="searcher.html">Searcher</a>/<a href="audit.html">Audit</a></h2>
+<body id="colour-corrector-app" style="font-family: Sans-Serif;">
+    <h2>Colour usage audit example: <a href="injector.html">Injector</a>/<a href="tweaker.html">Tweaker</a>/<a href="searcher.html">Searcher</a>/Audit</h2>
 
-		<p>by Frode Eika Sandnes, Oslo Metropolitan University, June 2021.</p>
-	
-		<p>This is an example page demonstrating the Colour Contrast Corrector tool. To use on your own web page include the javascript library. See the source of this page as an example. Download a local copy. Include the javascript library:</p>
-		<code class="tab">
-		&lt;script src="colourcorrector.js" defer&gt;		
-		</code>
+	<p>Example of the colour audit javascript code. The code samples the text and background 
+		colour usage on the page and computes the percentage use of the page real-estate.</p>
 
-		<p>Details are documented in: Frode Eika Sandnes. Inverse Color Contrast Checker: Automatically Suggesting
-			Color Adjustments that meet Contrast Requirements on the Web Submission. In: ASSETS '21: The 23rd International ACM SIGACCESS Conference on Computers and Accessibility Proceedings. ACM (2021).
-			 <a href="https://doi.org/10.1145/3441852.3476529" title="Link to the ACM page with the paper.">https://doi.org/10.1145/3441852.3476529</a></p>		
-	
-<h2>Keystroke controls</h2>	
-<p>You can visually inspect the effects of adjusting the contrasts using the following keystrokes.</p>	
-		<ul>
-		<li><b>Z</b>: Cycle between the original colours, AAA-level corrections, and AA-corrections.</li>
-		<li><b>M</b>: Toggle correction markers on/off.</li>
-		<li><b>Q/A</b>: text hue clockwise/anticlockwise adjustment.</li>
-		<li><b>W/S</b>: text saturation up/down.</li>
-		<li><b>E/D</b>: text lightness up/down.</li>
-		<li><b>R/F</b>: background hue clockwise/anticlockwise adjustment.</li>
-		<li><b>T/G</b>: background saturation up/down.</li>
-		<li><b>Y/H</b>: background lightness up/down.</li>
-		</ul>
+	<p>To audit an arbitrary page include the three javascript libraries. See the source 
+		of this page for an example.</p>
 
-		<p>Hover over the correction markers for adjustment details. Adjustments are also logged on the console.</p>
-
-		<p>Details are documented in: Frode Eika Sandnes. Inverse Color Contrast Checker: Automatically Suggesting
-			Color Adjustments that meet Contrast Requirements on the Web Submission. In: ASSETS '21: The 23rd International ACM SIGACCESS Conference on Computers and Accessibility Proceedings. ACM (2021).
-			 <a href="https://doi.org/10.1145/3441852.3476529" title="Link to the ACM page with the paper.">https://doi.org/10.1145/3441852.3476529</a></p>	
-	
-<h2>Examples</h2>		
+    <h2>Examples</h2>		
 		
-		<p>Test the injection on the samples below using the keystrokes.</p>
-		
+	
 		<div style="color:yellow;background-color:mistyrose;width:60%; float: left;">
 		<h2>Duis aute irure</h2>
 		<p style="color:yellow">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
@@ -144,7 +117,5 @@
 		<p style="color:magenta">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
 		</p>
 		</div>
-	</form>
-
-	</body>
+</body>
 </html>

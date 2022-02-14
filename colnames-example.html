@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo of Colournamelookup.js</title>
+
+    <script src = "colournamelookup.js"> </script> 
+  
+</head>
+<body>
+    <h1>Demo of colournamelookup.js</h1>
+    <p>Inspect the console.</p>
+
+    <script>
+        var r = 255;
+        var g = 128;
+        var b = 128;
+        var cn = findName(r,g,b);
+        var output = "Colour rgb("+r+", "+g+", "+b+") has name <b>" + cn.name + "</b> (deviates by "+colourDeviation(cn,r,g,b)+")."; 
+        document.getElementsByTagName("p")[0].innerHTML = output;
+    </script>
+</body>
+</html>

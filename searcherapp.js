@@ -227,6 +227,14 @@ function textSearch(fg,bg,limit)
 		}	
 	return [fg, bg, ratio];		
 	}
+
+function findColourDescription(c)
+	{
+	// get the colour names using colournamelookup.js
+	var cVector = getRGB(c);	
+	var cName = findName(cVector.r,cVector.g,cVector.b);
+	return cName.name;
+	}	
 function update(search)
 	{
 	var fg = hslToRgb(inputFH.value/100,
@@ -272,6 +280,10 @@ function update(search)
 	bg = colorString(bg);
 	textElement.style.backgroundColor = bg;	
 
+	// get the colour names using colournamelookup.js
+	var fgName = findColourDescription(fg);
+	var bgName = findColourDescription(bg);		
+
 	// update text labels
 	FHvalue.innerText = inputFH.value;
 	FSvalue.innerText = inputFS.value;
@@ -284,8 +296,8 @@ function update(search)
 	ContrastValue.innerText = inputContrast.value; 
 	TextSizeValue.innerText = textSize.value; 
 
-	FGvalue.innerText = fg;
-	BGvalue.innerText = bg;
+	FGvalue.innerText = fg+", "+fgName;
+	BGvalue.innerText = bg+", "+bgName;
 
 	analyseHarmony(ratio);
 	checkConformance();			

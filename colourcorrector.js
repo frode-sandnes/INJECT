@@ -22,8 +22,8 @@ var noAnnotations = getStatusMarkerString(0,"NONE");
 var markers = [];
 var markerMode = "on";
 
-// starting the framework
-start();
+//  Starting point: event handler to ensure DOM is loaded before start is called..
+window.addEventListener('DOMContentLoaded', (event) => start());
    
 async function start()
     {		
@@ -250,12 +250,12 @@ function logBackgroundChange(bg,bg2)
 	}
 function makeToolTipText(fg,fg2)
 	{
-	return " Text " +fg+" -> " + colorString(fg2);
+	return " Text " +fg+"/ -> " + colorString(fg2)+"/";
 	}	
 function makeToolTipBackground(bg,bg2)
 	{
 	return ", background "
-		+bg+" -> "+colorString(bg2);
+		+bg+"/ -> "+colorString(bg2)+"/";
 	}
 // build the data structure with adjustments
 function findColourAdjustments(conformanceLevel,m,annotations)

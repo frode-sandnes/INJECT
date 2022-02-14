@@ -4,8 +4,9 @@
 // This is an example application usilizing the colourcorrector.js library
 // Originally inside colourcorrector.js, but separated out to keep core code smaller and generic.
 
+//  Starting point: event handler to ensure DOM is loaded before update is called..
 //  call on startup to populate the results values
-update();
+window.addEventListener('DOMContentLoaded', (event) => update());
 
 // Application specific: for use with the interactive tool - update called whenever inputs are altered
 function update()
@@ -21,12 +22,23 @@ function update()
         }
 	setTimeout(updateCorrect, 100);
 	}
+
+function findColourDescription(c)
+	{
+	// get the colour names using colournamelookup.js
+	var cVector = getRGB(c);	
+	var cName = findName(cVector.r,cVector.g,cVector.b);
+	return "<b>" + cName.name + "</b> (dev. "+colourDeviation(cName,cVector.r,cVector.g,cVector.b)+")";
+	}
 // Application specific: create innHTML colour status string
 function addColourInfo(id,fg,bg,ratio)
 	{
+	var fgName = findColourDescription(fg);
+	var bgName = findColourDescription(bg);
+	// output the result
 	e = document.getElementById(id);
-	e.innerHTML = "<ul><li>Foreground text: "+fg+"</li>"+
-				  "<li>Background: "+bg+"</li>"+
+	e.innerHTML = "<ul><li>Foreground text: "+fg+", "+fgName+"</li>"+
+				  "<li>Background: "+bg+", "+bgName+"</li>"+
 				  "<li>Contrast ratio: "+(1/ratio).toFixed(2)+"</li></ul>";	
 	}
 // Application specific: perform the interactive update
