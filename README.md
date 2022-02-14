@@ -2,6 +2,8 @@
 
 This repository containst the source files for the Inverse Colour Contrast Checker.
 
+A live demo: https://frode-sandnes.github.io/INJECTOR/
+
 You can attach the framework to your web project by adding a javascript callback in the body onload event or by inserting a button on your page.
 
 Then you can cycle through the original page, page with WCAG2.1 aaa corrections and aa corrections using Contrl+Z. You can also adjust the brightness of the text using Contrl+UP/DOWN, or saturation level using Contrl+LEFT/RIGHT.
