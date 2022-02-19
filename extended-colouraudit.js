@@ -44,14 +44,14 @@ async function outputRealEstateStatistics()
     {
     // add a new tag for output
     var report = document.createElement('div');
-    report.style.cssText = 'overflow: auto; border: 5px solid yellow; padding: 5px; background: black; color: yellow; min-height:50%; width: 50%; position:fixed; top:25%; right:25%; bottom:25%; left:25%; z-index: 2;';
+    report.style.cssText = 'overflow: auto; border: 5px solid yellow; padding: 5px; background: black; color: yellow; min-height:80%; width: 98%; position:fixed; top:10%; bottom:10%; left:0%; z-index: 2;';
     report.id = "info";
     document.body.appendChild(report);   
     await browserUpdate(); // give control to browser for a bit 
     // traverse list of elements
     var sortedHistogram = new Map([...histogram.entries()].sort((a, b) => b[1] - a[1]));
-    var txt = "<span id=\"closeInfo\" style=\"cursor: pointer; position: absolute; top: 0%;right: 0%; padding: 12px 16px; transform: translate(25%, -25%);\">x</span>"
-			+"<h2>Colour summary ("+histogram.size+" colour pairs)</h2><p>Percent of total area.</p><ol>";
+    var txt = "<span id=\"closeInfo\" style=\"cursor: pointer; position: absolute; top: 0%;right: 1%; padding: 12px 16px; transform: translate(25%, -25%);\">x</span>"
+			+"<table><tr><th scope=\"col\">Colour</th><th scope=\"col\">Area</th><th scope=\"col\">Colour harmony</th><th scope=\"col\">Contrast</th><th scope=\"col\">Constrast ratio = 3  </th><th scope=\"col\">Constrast ratio = 4.5</th><th scope=\"col\">Constrast ratio = 7</th></tr>";
     for (var p of sortedHistogram.keys())
         {
         var pair = JSON.parse(p);
@@ -59,13 +59,13 @@ async function outputRealEstateStatistics()
         var c = sortedHistogram.get(p);
         var cPst = (100*c/samples).toFixed(1)+"%";
         // prepare output
-        txt += "<li>" 
-                    + "<span style=\"color: "+pair[0]+"; background: "+pair[1]+"\"> Text </span>: "
-                    + pair[0] + " on " + pair[1] + " (" + cPst + ")"
-                +"</li>";
+        txt += "<tr>" 
+                    + "<td><span style=\"color: "+pair[0]+"; background: "+pair[1]+"\"> Text </span>: "
+                    + pair[0] + " on " + pair[1] + "</td><td>" + cPst + "</td><td>"+harmony.get(p)+"</td><td>"+ratio.get(p)+"</td><td>"+correction3.get(p)+"</td><td>"+correction45.get(p)+"</td><td>"+correction7.get(p)
+                +"</td></tr>";
         }
     // output the report
-    txt += "</ol>";
+    txt += "<caption>Summary of page colours ("+histogram.size+" colour pairs)</caption></table>";
     report.innerHTML = txt;
 
 	// add the close functionality
@@ -78,6 +78,11 @@ async function outputRealEstateStatistics()
 
 // global var for bookkeeping	
 var histogram = new Map();	
+var ratio = new Map();
+var harmony = new Map();	
+var correction3 = new Map();	// the three levels of corrections	
+var correction45 = new Map();	
+var correction7 = new Map();	
 var samples = 0;
 // measure the current visible area - add to the accumulated results
 function analyseVisibleRealEstate()
@@ -111,7 +116,8 @@ function analyseVisibleRealEstate()
                 var bgn = findName(bg2.r, bg2.g, bg2.b).name;
                 var fgn = findName(fg2.r, fg2.g, fg2.b).name;                   
                 var pair = JSON.stringify([fgn,bgn]);    
-
+				
+				// track histogram
 				if (histogram.has(pair))
 					{
 					var c = histogram.get(pair);
@@ -122,11 +128,45 @@ function analyseVisibleRealEstate()
 					{
 					histogram.set(pair,1);
 					}
+
+				// track ratio
+				var contrast = 1/contrastRatio(fg2,bg2);
+				ratio.set(pair,contrast.toFixed(1));
+
+				// track harmony
+				var fgHSL = rgbToHsl(fg2.r, fg2.g, fg2.b);
+				var bgHSL = rgbToHsl(bg2.r, bg2.g, bg2.b);
+				var fAngle = fgHSL.h*2*Math.PI;
+				var bAngle = bgHSL.h*2*Math.PI;		
+				harmony.set(pair,harmonyName(fAngle,bAngle).toLowerCase());
+				// track correction
+				correction3.set(pair,findColorCorrection(3,fg2,bg2));
+				correction45.set(pair,findColorCorrection(4.5,fg2,bg2));
+				correction7.set(pair,findColorCorrection(7,fg2,bg2));
 				}
 			}	
 		}
 	}
 	
+function findColorCorrection(limit,fg2,bg2)
+	{
+	var contrast = 1/contrastRatio(fg2,bg2);		
+	var text = "";
+	if (limit > contrast)
+		{
+		var fg2 = searchForContrast(fg2,bg2,1/limit);			
+		contrast = 1/contrastRatio(fg2,bg2);
+		if (limit > contrast)
+			{	// we also need to adjust background
+			bg2 = searchForContrast(bg2,fg2,1/limit);				
+			}	
+		var bgn = findName(bg2.r, bg2.g, bg2.b).name;
+		var fgn = findName(fg2.r, fg2.g, fg2.b).name;    
+		text = "<span style=\"color: "+fgn+"; background: "+bgn+"\"> Text </span>: "+fgn + " on "+ bgn; 
+		}	
+	return text;
+	}
+
 // Utility function browser: return true only if element is visible, or not opaque.
 function isVisible(e) 
 	{

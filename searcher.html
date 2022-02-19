@@ -50,7 +50,7 @@
 				display: inline-grid;
 				width: 100%;	
 				gap: 0.2em;	
-				text-align: center;
+			/*	text-align: center;*/
 				grid-template-areas:
 					"ha ha ha hb hb hb  .  . hc"
 					"h1 h2 h3 h4 h5 h6 h7 h8 ."
@@ -61,7 +61,20 @@
 					"s1 s2 s3 s4 s5 s6 s7 s8 c"
 					"v1 v2 v3 v4 v5 v6 v7 v8 ."
 					"va va va vb vb vb  .  . .";
+				align-items: start;
 			}
+
+			.general
+				{
+				width: 5vw;
+				}
+
+			.group
+				{
+				width: 20vw;
+				height: 7vh;
+				}
+
 			.headera {
 				grid-area: ha;			
 			}
@@ -183,22 +196,18 @@
 
 			.checkbox {
 				grid-area: c;
-				justify-self: start;
 			}
 
 			.radio1 {
 				grid-area: r1;
-				justify-self: start;
 			}
 
 			.radio2 {
 				grid-area: r2;
-				justify-self: start;
 			}
 
 			.radio3 {
 				grid-area: r3;
-				justify-self: start;
 			}
 		</style>
 
@@ -210,99 +219,96 @@
 
 	<body id="colour-corrector-app">
 		<form id="inpt">
-			<div class="container">
-				<h1>Inverse Colour Contrast Checker: <a href="injector.html">Injector</a>/<a
-						href="tweaker.html">Tweaker</a>/Inspector/<a href="audit.html">Audit</a></h1>
-						<p>Adjustments are locked to the contrast setting.</p>
-			</div>
+			<h1>Inverse Colour Contrast Checker</h1>
+
 			<div class="container">
 
 
 				<div class="grid">
 
-					<div class="headera">
+					<div class="headera group">
 						Text colour
 					</div>
-					<div class="headerb">
+					<div class="headerb group">
 						Background colour
 					</div>
-					<div class="headerc" id="harmony">
+					<div class="headerc group" id="harmony">
 					</div>
 
-					<div class="header1">
+					<div class="header1 general">
 						Hue
 					</div>
-					<div class="header2">
+					<div class="header2 general">
 						Sat.
 					</div>
-					<div class="header3">
+					<div class="header3 general">
 						Lit.
 					</div>
-					<div class="header4">
+					<div class="header4 general">
 						Hue
 					</div>
-					<div class="header5">
+					<div class="header5 general">
 						Sat.
 					</div>
-					<div class="header6">
+					<div class="header6 general">
 						Lit.
 					</div>
-					<div class="header7">
+					<div class="header7 general">
 						Contrast
 					</div>
-					<div class="header8">
+					<div class="header8 general">
 						Text size
 
 					</div>
-					<div class="slider1">
+					<div class="slider1 general">
 						<input type="range" min="1" max="100" value="50" class="slider" id="inputFH">
 					</div>
-					<div class="slider2">
+					<div class="slider2 general">
 
 						<input type="range" min="1" max="100" value="50" class="slider" id="inputFS">
 					</div>
-					<div class="slider3">
+					<div class="slider3 general">
 
 						<input type="range" min="1" max="100" value="50" class="slider" id="inputFL">
 					</div>
-					<div class="slider4">
+					<div class="slider4 general">
 
 						<input type="range" min="0" max="100" value="50" class="slider" id="inputBH">
 					</div>
-					<div class="slider5">
+					<div class="slider5 general">
 
 						<input type="range" min="0" max="100" value="50" class="slider" id="inputBS">
 					</div>
-					<div class="slider6">
+					<div class="slider6 general">
 
 						<input type="range" min="0" max="100" value="50" class="slider" id="inputBL">
 					</div>
-					<div class="slider7">
+					<div class="slider7 general">
 
 						<input type="range" min="1" max="21" value="3" class="slider" id="inputContrast">
 					</div>
-					<div class="slider8">
+					<div class="slider8 general">
 
 						<input type="range" min="8" max="50" value="18" class="slider" id="textSize">
 					</div>
-					<div class="checkbox">
+					<div class="checkbox group">
 
 						<input type="checkbox" id="isBold" name="isBold" value="isBold">
 						<label for="isBold"> Bold typeface</label><br>
 
 					</div>
-					<div class="radio1">
+					<div class="radio1 group">
 
 						<input type="radio" id="aaa" name="conformance" value="aaa">
 						<label for="aaa">AAA conformance</label><br>
 					</div>
-					<div class="radio2">
+					<div class="radio2 group">
 
 
 						<input type="radio" id="aa" name="conformance" value="aa">
 						<label for="aa">AA conformance</label><br>
 					</div>
-					<div class="radio3">
+					<div class="radio3 group">
 
 						<input type="radio" id="none" name="conformance" value="none">
 						<label for="none">No conformance</label>
@@ -310,32 +316,32 @@
 					</div>
 
 
-					<div class="value1" id="FHvalue">
+					<div class="value1 general" id="FHvalue">
 					</div>
 
-					<div class="value2" id="FSvalue">
+					<div class="value2 general" id="FSvalue">
 					</div>
-					<div class="value3" id="FLvalue">
-					</div>
-
-					<div class="value4" id="BHvalue">
+					<div class="value3 general" id="FLvalue">
 					</div>
 
-					<div class="value5" id="BSvalue">
-					</div>
-					<div class="value6" id="BLvalue">
+					<div class="value4 general" id="BHvalue">
 					</div>
 
-					<div class="value7" id="ContrastValue">
+					<div class="value5 general" id="BSvalue">
+					</div>
+					<div class="value6 general" id="BLvalue">
 					</div>
 
-					<div class="value8" id="TextSizeValue">
+					<div class="value7 general" id="ContrastValue">
 					</div>
 
-					<div class="valuea" id="FGvalue">
+					<div class="value8 general" id="TextSizeValue">
 					</div>
 
-					<div class="valueb" id="BGvalue">
+					<div class="valuea group" id="FGvalue">
+					</div>
+
+					<div class="valueb group" id="BGvalue">
 					</div>
 
 				</div>
@@ -348,17 +354,16 @@
 				</p>
 			</div>
 
-			<div class="container">
-				<p>Details are documented in: Frode Eika Sandnes. Inverse Color Contrast Checker: Automatically Suggesting
-					Color Adjustments that meet Contrast Requirements on the Web Submission. In: ASSETS '21: The 23rd
-					International ACM SIGACCESS Conference on Computers and Accessibility Proceedings. ACM (2021).
-					<a href="https://doi.org/10.1145/3441852.3476529"
-						title="Link to the ACM page with the paper.">https://doi.org/10.1145/3441852.3476529</a></p>
-						<p>by Frode Eika Sandnes, Oslo Metropolitan University, June 2021, updated February, 2022.</p>			
+			<p>Details are documented in: Frode Eika Sandnes. Inverse Color Contrast Checker: Automatically Suggesting
+				Color Adjustments that meet Contrast Requirements on the Web Submission. In: ASSETS '21: The 23rd
+				International ACM SIGACCESS Conference on Computers and Accessibility Proceedings. ACM (2021).
+				<a href="https://doi.org/10.1145/3441852.3476529"
+					title="Link to the ACM page with the paper.">https://doi.org/10.1145/3441852.3476529</a></p>
+					<p>by Frode Eika Sandnes, Oslo Metropolitan University, June 2021, updated February, 2022.</p>			
 
-						<p>Colour names are based on the list of colours  supported by most browsers. Note that these are not part of the web standard.
-						</p>
-			</div>
+					<p>Colour names are based on the list of colours  supported by most browsers. Note that these are not part of the web standard.
+					</p>
+					<p>Adjustments are locked to the contrast setting.</p>
 		</form>
 	</body>
 

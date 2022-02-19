@@ -3,9 +3,8 @@
 
 // This is an example application usilizing the colourcorrector.js library
 
-//  call on startup to populate the results values
-setup();
-
+//  Starting point: event handler to ensure DOM is loaded before setup() is called..
+window.addEventListener('DOMContentLoaded', (event) => setup());
 
 // globals
 var textElement,
@@ -310,28 +309,6 @@ function analyseHarmony(ratio)
 	var b = inputBH.value;	
 	var fAngle = 2*Math.PI*f/100;
 	var bAngle = 2*Math.PI*b/100;
-	var fx = Math.cos(fAngle);
-	var fy = Math.sin(fAngle);
-	var bx = Math.cos(bAngle);
-	var by = Math.sin(bAngle);
-	var crossProd = fx*bx + fy*by;
-	var angle = Math.acos(crossProd);
-	angle = 180*angle/Math.PI;
-	if (angle < 30)
-		{
-		harmony.innerText = "Monochrome";
-		}
-	else if (angle < 60)
-		{
-		harmony.innerText = "Neightbour";
-		}
-	else if (angle < 150)
-		{
-		harmony.innerText = "Tetriadic";
-		}
-	else	
-		{
-		harmony.innerText = "Complimentary";
-		}
+	harmony.innerText =	harmonyName(fAngle,bAngle);
 	harmony.innerText += " ("+(1/ratio).toFixed(2)+")";
 	}

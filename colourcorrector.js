@@ -638,3 +638,33 @@ function browserUpdate()
 	var ms = 10; // number of millisecs to pause before returning
 	return new Promise(resolve => setTimeout(resolve, ms));
 	}
+
+// Utility function for colour harmony names -  Angles in radians
+function harmonyName(fAngle,bAngle)
+	{
+	var name = "";
+	var fx = Math.cos(fAngle);
+	var fy = Math.sin(fAngle);
+	var bx = Math.cos(bAngle);
+	var by = Math.sin(bAngle);
+	var crossProd = fx*bx + fy*by;
+	var angle = Math.acos(crossProd);
+	angle = 180*angle/Math.PI;
+	if (angle < 30)
+		{
+		name = "Monochrome";
+		}
+	else if (angle < 60)
+		{
+		name = "Neightbour";
+		}
+	else if (angle < 150)
+		{
+		name = "Tetriadic";
+		}
+	else	
+		{
+		name = "Complimentary";
+		}		
+	return name;
+	}

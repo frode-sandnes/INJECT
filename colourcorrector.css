@@ -1,5 +1,10 @@
 /* // By Frode Eika Sandnes, Oslo Metropolitan University, Oslo, Norway, January 2021 */	
 
+body
+    {
+        font-family: Sans-Serif;
+    }
+
 ul.noBullets {
     margin: 0;
     padding: 0;

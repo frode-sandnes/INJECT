@@ -1,150 +1,44 @@
 <!DOCTYPE html>
 
-<!-- By Frode Eika Sandnes, Oslo Metropolitan University, Oslo, Norway, January 2021 -->
+<!-- By Frode Eika Sandnes, Oslo Metropolitan University, Oslo, Norway, February 2022 -->
 
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Inverse Colour Contrast Checker: Injector</title>
-    <link href="colourcorrector.css" rel="stylesheet">
-	
-	<script src="colourcorrector.js" deferW></script>
+    <title>Colour playground</title>
+    <link href="colourcorrector.css" rel="stylesheet">	
 </head>
 
 <body>
-	<form>
-		<h2>Inverse Colour Contrast Checker: Injector/<a href="tweaker.html">Tweaker</a>/<a href="searcher.html">Searcher</a>/<a href="audit.html">Audit</a></h2>
+		<h1>Welcome to the colour contrast playground</h1>
 
-		<p>by Frode Eika Sandnes, Oslo Metropolitan University, June 2021.</p>
-	
-		<p>This is an example page demonstrating the Colour Contrast Corrector tool. To use on your own web page include the javascript library. See the source of this page as an example. Download a local copy. Include the javascript library:</p>
-		<code class="tab">
-		&lt;script src="colourcorrector.js" defer&gt;		
-		</code>
+		<p>This is a collection of tools and examples intented to fascilitate the promotion, experimentation and learing about high colour contrast on the web.</p>
 
-		<p>Details are documented in: Frode Eika Sandnes. Inverse Color Contrast Checker: Automatically Suggesting
-			Color Adjustments that meet Contrast Requirements on the Web Submission. In: ASSETS '21: The 23rd International ACM SIGACCESS Conference on Computers and Accessibility Proceedings. ACM (2021).
-			 <a href="https://doi.org/10.1145/3441852.3476529" title="Link to the ACM page with the paper.">https://doi.org/10.1145/3441852.3476529</a></p>		
-	
-<h2>Keystroke controls</h2>	
-<p>You can visually inspect the effects of adjusting the contrasts using the following keystrokes.</p>	
 		<ul>
-		<li><b>Z</b>: Cycle between the original colours, AAA-level corrections, and AA-corrections.</li>
-		<li><b>M</b>: Toggle correction markers on/off.</li>
-		<li><b>Q/A</b>: text hue clockwise/anticlockwise adjustment.</li>
-		<li><b>W/S</b>: text saturation up/down.</li>
-		<li><b>E/D</b>: text lightness up/down.</li>
-		<li><b>R/F</b>: background hue clockwise/anticlockwise adjustment.</li>
-		<li><b>T/G</b>: background saturation up/down.</li>
-		<li><b>Y/H</b>: background lightness up/down.</li>
+			<li>
+				<a href="injector.html">Injector</a>: View your page with suggestec colour corrections. Colour combinations that do not meet WCAG are corrected. The links takes you to a sample page. You can apply this to your own page by including the javascript library.
+			</li>
+
+			<li>
+				<a href="tweaker.html">Tweaker</a>: Look up the contrast level of text-background colour pairs. This enhanced contrast calculator will suggest changes that ensure your colours meet WCAG AA and AAA success criteria. Colours are input using any valid CSS colour description (rgb, hsl, names, etc.).
+			</li>
+
+			<li>
+				<a href="searcher.html">Searcher</a>: Interactively experiment and learn about how modifications of a colour affect the other colour while ensuring sufficient contrast.
+			</li>
+
+			<li>
+				<a href="audit.html">Audit</a>: Get a basic overview of colour usage on your webpage in terms of real-estate usage. The links take you to a sample page. You can audit your own page by including the javascrript libraries (see the source).
+			</li>
+
+			<li>
+				<a href="extended-audit.html">Extended audit</a>: Get a more elaborate overview of colour usage on your webpage in terms of real-estate usage, colour harmonies and colour corrections. The links take you to a sample page. You can audit your own page by including the javascrript libraries (see the source). Note that the suggestions adhere to a contrast ratio of 4.5. Broswer-supported colour names are used as mnemonics.
+			</li>
+
 		</ul>
-
-		<p>Hover over the correction markers for adjustment details. Adjustments are also logged on the console.</p>
-
-		<p>Details are documented in: Frode Eika Sandnes. Inverse Color Contrast Checker: Automatically Suggesting
-			Color Adjustments that meet Contrast Requirements on the Web Submission. In: ASSETS '21: The 23rd International ACM SIGACCESS Conference on Computers and Accessibility Proceedings. ACM (2021).
-			 <a href="https://doi.org/10.1145/3441852.3476529" title="Link to the ACM page with the paper.">https://doi.org/10.1145/3441852.3476529</a></p>	
+		<p>The source code is  available in the <a href="https://github.com/frode-sandnes/INJECTOR">INJECTOR</a> githup repository.</p>
+		<p>By Frode Eika Sandnes, Oslo Metropolitan University, February 2022.</p>
 	
-<h2>Examples</h2>		
-		
-		<p>Test the injection on the samples below using the keystrokes.</p>
-		
-		<div style="color:yellow;background-color:mistyrose;width:60%; float: left;">
-		<h2>Duis aute irure</h2>
-		<p style="color:yellow">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-		</p>
-		</div>
-		
-		<div style="color:lightgray;background-color:mistyrose;width:60%;float: right;">
-		<h2>Duis aute irure</h2>
-		<p style="color:lightgray">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-		</p>
-		</div>
-	
-		<div style="color:red;background-color:green;width:60%; float: left;">
-		<h2>Duis aute irure</h2>
-		<p style="color:red">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-		</p>
-		</div>
-		
-		<div style="color:red;background-color:blue;width:60%;float: right;">
-		<h2>Duis aute irure</h2>
-		<p style="color:red">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-		</p>
-		</div>
-
-		<div style="color:green;background-color:lightgreen;width:60%;float: left;">
-		<h2>Duis aute irure</h2>
-		<p style="color:green">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-		</p>
-		</div>
-	
-		<div style="color:blue;background-color:lightblue;width:60%;float: right;">
-		<h2>Duis aute irure</h2>
-		<p style="color:blue">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-		</p>
-		</div>
-		
-		<div style="color:lightblue;background-color:lightblue;width:60%;float: left;">
-		<h2>Duis aute irure</h2>
-		<p style="color:lightblue">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-		</p>
-		</div>
-	
-	
-		<div style="color:red;background-color:red;width:60%;float: right;">
-		<h2>Duis aute irure</h2>
-		<p style="color:red">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-		</p>
-		</div>
-	
-		<div style="color:orange;background-color:orange;width:60%;float: left;">
-		<h2>Duis aute irure</h2>
-		<p style="color:orange">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-		</p>
-		</div>	
-	
-		<div style="color:yellow;background-color:yellow;width:60%;float: right;">
-		<h2>Duis aute irure</h2>
-		<p style="color:yellow">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-		</p>
-		</div>
-	
-		<div style="color:greenyellow;background-color:greenyellow;width:60%;float: left;">
-		<h2>Duis aute irure</h2>
-		<p style="color:greenyellow">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-		</p>
-		</div>	
-	
-		<div style="color:green;background-color:green;width:60%;float: right;">
-		<h2>Duis aute irure</h2>
-		<p style="color:green">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-		</p>
-		</div>
-
-		<div style="color:turquoise;background-color:turquoise;width:60%;float: left;">
-		<h2>Duis aute irure</h2>
-		<p style="color:turquoise">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-		</p>
-		</div>		
-		
-		<div style="color:cyan;background-color:cyan;width:60%;float: right;">
-		<h2>Duis aute irure</h2>
-		<p style="color:cyan">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-		</p>
-		</div>
-		<div style="color:blue;background-color:blue;width:60%;float: left;">
-		<h2>Duis aute irure</h2>
-		<p style="color:blue">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-		</p>
-		</div>
-				
-		<div style="color:magenta;background-color:magenta;width:60%;float: right;">
-		<h2>Duis aute irure</h2>
-		<p style="color:magenta">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-		</p>
-		</div>
-	</form>
 
 	</body>
 </html>
